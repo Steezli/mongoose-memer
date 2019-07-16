@@ -44,4 +44,17 @@ describe('routes', () => {
         expect(res.body).toEqual([memeJSON]);
       });
   });
+  it('can GET a meme by id', async() => {
+    const meme = await Meme.create({ name: 'yo momma so fat!' });
+
+    return request(app)
+      .get(`/api/v1/memes/${meme.id}`)
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          name: 'yo momma so fat!',
+          __v: 0
+        });
+      });
+  });
 });
