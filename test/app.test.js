@@ -35,7 +35,7 @@ describe('routes', () => {
       });
   });
   it('can get a meme', async() => {
-    const meme = await Meme.create({ name: 'Say what?'});
+    const meme = await Meme.create({ name: 'Say what?' });
 
     return request(app)
       .get('/api/v1/memes')
