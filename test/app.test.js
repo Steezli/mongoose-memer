@@ -48,7 +48,7 @@ describe('routes', () => {
     const meme = await Meme.create({ name: 'yo momma so fat!' });
 
     return request(app)
-      .get(`/api/v1/memes/${meme.id}`)
+      .get(`/api/v1/memes/${meme._id}`)
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
@@ -56,5 +56,15 @@ describe('routes', () => {
           __v: 0
         });
       });
+  });
+  it('can update a meme using PATCH', async() => {
+    const meme = await Meme.create({ name: 'yo momma so fat!' });
+
+    return request(app)
+      .put(`/api/v1/memes/${meme._id}`)
+      .send({ name: 'not yo momma' })
+      .then(res => {
+        expect(res.body.name).toEqual('not yo momma');
+      })
   });
 });
