@@ -22,13 +22,13 @@ describe('routes', () => {
   it('creates a new meme', () => {
     return request(app)
       .post('/api/v1/memes')
-      .send({ name: 'breath', topText: 'take a breath when you get the chance', bottomText: 'You dont know when youll get the next one', image: 'https://thoughtcatalog.files.wordpress.com/2015/06/shutterstock_228683719.jpg?w=786&h=524' })
+      .send({ name: 'breath', top: 'take a breath when you get the chance', bottom: 'You dont know when youll get the next one', image: 'https://thoughtcatalog.files.wordpress.com/2015/06/shutterstock_228683719.jpg?w=786&h=524' })
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
           name: 'breath',
-          topText: 'take a breath when you get the chance',
-          bottomText: 'You dont know when youll get the next one',
+          top: 'take a breath when you get the chance',
+          bottom: 'You dont know when youll get the next one',
           image: 'https://thoughtcatalog.files.wordpress.com/2015/06/shutterstock_228683719.jpg?w=786&h=524',
           __v: 0
         });
