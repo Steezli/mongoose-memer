@@ -65,6 +65,15 @@ describe('routes', () => {
       .send({ name: 'not yo momma' })
       .then(res => {
         expect(res.body.name).toEqual('not yo momma');
-      })
+      });
+  });
+  it('can DELETE a meme', async() => {
+    const meme = await Meme.create({ name: 'not yo momma' });
+
+    return request(app)
+      .delete(`/api/v1/memes/${meme._id}`)
+      .then(res => {
+        expect(res.body.name).toEqual('not yo momma');
+      });
   });
 });
