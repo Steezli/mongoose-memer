@@ -34,4 +34,14 @@ describe('routes', () => {
         });
       });
   });
+  it('can get a meme', async() => {
+    const meme = await Meme.create({ name: 'Say what?'});
+
+    return request(app)
+      .get('/api/v1/memes')
+      .then(res => {
+        const memeJSON = JSON.parse(JSON.stringify(meme));
+        expect(res.body).toEqual([memeJSON]);
+      });
+  });
 });
